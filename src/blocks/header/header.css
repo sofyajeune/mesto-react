@@ -1,9 +1,9 @@
 .header {
     max-width: 880px;
     min-height: 5.78vw;
-    margin: 0 auto;
-    padding-top: 3.52vw;
-    margin-bottom: 2.81vw;
+    margin: 0 auto 0 auto;
+    padding-top: 46px;
+    margin-bottom: 36px;
     border-bottom: 1px solid rgba(84,84,84,0.7);
 }
 

@@ -6,11 +6,11 @@
     background-size: 2.5vw;
     background-position: center;
     cursor: pointer;
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    top: -2.890625vw;
-    right: -2.8125vw; 
+    top: -37px;
+    right: -36px; 
 }
 
 .popup__close-button:hover {
@@ -20,9 +20,9 @@
 @media screen and (max-width: 500px) {
     .popup__close-button {
         background-size: 6.25vw;
-        width: 6.25vw;
-        height: 6.25vw;
-        top: -11.25vw;
+        width: 20px;
+        height: 20px;
+        top: -36px;
         right: 0;
     }
 }
