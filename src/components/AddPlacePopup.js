@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
@@ -6,8 +6,8 @@ function AddPlacePopup(props) {
     const { isOpen, onClose, onAddPlace } = props 
     
     //Стейты для имени и ссылки на картинку
-    const [cardTitle, setCardTitle] = useState('');
-    const [cardLink, setCardLink] = useState('');
+    const [cardTitle, setCardTitle] = React.useState('');
+    const [cardLink, setCardLink] = React.useState('');
 
     //Обработчик установки названия места
     function handleCardTitle(event) {
