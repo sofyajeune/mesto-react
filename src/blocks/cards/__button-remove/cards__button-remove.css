@@ -19,3 +19,7 @@
 .cards__button-remove:active {
     opacity: .4;
 }
+
+.cards__button-remove_hidden {
+    display: none;
+  }

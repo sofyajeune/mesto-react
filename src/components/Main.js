@@ -1,53 +1,35 @@
 import React from 'react';
-import { api } from '../utils/Api';
 import Card from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
 
-  const { onEditProfile, onAddPlace, onEditAvatar, onCard } = props;
+  const { isEditAvatarPopupOpen, isEditProfilePopupOpen, isAddPlacePopupOpen, onCardClick, cards, onCardLike,
+    onCardDelete } = props;
 
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    Promise.all([
-      api.getUserInfo(),
-      api.getInitialCard()
-    ])
-      .then(([data, cards]) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main>
       <section className="profile">
-        <img className="profile__avatar" src={userAvatar} alt="Аватарка" />
-        <button type="button" className="profile__avatar-edit-button" aria-label="кнопка для изменения аватара" onClick={onEditAvatar} />
+        <img className="profile__avatar" src={`${currentUser.avatar}`} alt="Аватарка" />
+        <button type="button" className="profile__avatar-edit-button" aria-label="кнопка для изменения аватара" onClick={isEditAvatarPopupOpen} />
         <div className="profile__info">
-          <h1 className="profile__name" id="name">{userName}</h1>
-          <button className="profile__edit-button" type="button" aria-label="добавление информации" onClick={onEditProfile} />
-          <p className="profile__position" id="position-job">{userDescription}</p>
+          <h1 className="profile__name" id="name">{currentUser.name}</h1>
+          <button className="profile__edit-button" type="button" aria-label="добавление информации" onClick={isEditProfilePopupOpen} />
+          <p className="profile__position" id="position-job">{currentUser.about}</p>
         </div>
-        <button className="profile__plus-button" type="button" aria-label="редактирование профиля" onClick={onAddPlace} />
+        <button className="profile__plus-button" type="button" aria-label="редактирование профиля" onClick={isAddPlacePopupOpen} />
       </section>
       <section className="elements" aria-label="Фотографии пользователя">
         <div className="cards">
           {cards.map((card) => (
-            <Card key={card._id}
-              name={card.name}
-              link={card.link}
-              likesAmount={card.likes.length}
-              onCardClick={onCard} />
+            <Card
+              card={card}
+              key={card._id}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete} />
           ))}
         </div>
       </section>
